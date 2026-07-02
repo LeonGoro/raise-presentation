@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAISE — Design Style Gallery</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e5e7eb;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #06b6d4 0%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #8b5cf6;
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+
+        .styles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .style-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .style-card:hover {
+            border-color: #06b6d4;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2);
+        }
+
+        .style-card.selected {
+            border-color: #fbbf24;
+            background: rgba(251, 191, 36, 0.1);
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+        }
+
+        .style-name {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #f8fafc;
+        }
+
+        .style-category {
+            display: inline-block;
+            background: rgba(100, 116, 139, 0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            color: #cbd5e1;
+            margin-bottom: 12px;
+        }
+
+        .style-description {
+            font-size: 0.95em;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .style-preview {
+            width: 100%;
+            height: 150px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Previews for each style */
+        .preview-minimalism {
+            background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+            color: #111;
+        }
+
+        .preview-glassmorphism {
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(200,200,255,0.2) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .preview-brutalism {
+            background: #000;
+            border: 3px solid #fff;
+            color: #fff;
+        }
+
+        .preview-neumorphism {
+            background: linear-gradient(135deg, #e0e5ec 0%, #f8f9fa 100%);
+            box-shadow: 5px 5px 15px #a3b1c6, -5px -5px 15px #fff;
+            color: #333;
+        }
+
+        .preview-dark-minimal {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .preview-neon {
+            background: linear-gradient(135deg, #0a0e27 0%, #1a0a3e 100%);
+            box-shadow: 0 0 20px rgba(0, 255, 200, 0.5);
+            border: 2px solid #00ffc8;
+        }
+
+        .preview-clay {
+            background: linear-gradient(135deg, #fdb4a4 0%, #f5a6a0 100%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.2);
+            color: #333;
+        }
+
+        .preview-gradient-rich {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        }
+
+        .preview-monochrome {
+            background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+        }
+
+        .preview-duotone {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .style-for { color: #06b6d4; font-weight: 500; }
+
+        .selection-info {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid #06b6d4;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .selection-info h2 {
+            color: #fbbf24;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .selected-style-name {
+            font-size: 2em;
+            color: #06b6d4;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .selection-description {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .select-button {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .select-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(8, 145, 178, 0.2);
+            border: 1px solid #0891b2;
+            color: #06b6d4;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-right: 6px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 RAISE Design Styles</h1>
+        <p class="subtitle">Click any style to select it as your design foundation</p>
+
+        <div class="styles-grid" id="stylesGrid"></div>
+
+        <div class="selection-info" id="selectionInfo" style="display: none;">
+            <h2>✨ You Selected:</h2>
+            <div class="selected-style-name" id="selectedName"></div>
+            <div class="selection-description" id="selectedDescription"></div>
+            <div id="selectedTags"></div>
+            <button class="select-button" onclick="confirmSelection()">✓ Use This Style</button>
+        </div>
+    </div>
+
+    <script>
+        const styles = [
+            // Professional SaaS
+            { name: "Minimalism", category: "Professional", description: "Clean, spacious, focus on content. Perfect for SaaS and fintech.", preview: "preview-minimalism", tags: ["saas", "professional", "clean"], goodFor: "Investment platforms, dashboards" },
+            { name: "Glassmorphism", category: "Modern", description: "Frosted glass effect with blur. Modern and premium feel.", preview: "preview-glassmorphism", tags: ["modern", "premium", "trendy"], goodFor: "High-end applications" },
+            { name: "Dark Minimal", category: "Professional", description: "Dark theme with minimal elements. Professional and elegant.", preview: "preview-dark-minimal", tags: ["dark", "professional", "elegant"], goodFor: "SaaS, fintech, investment" },
+            { name: "Brutalism", category: "Bold", description: "Raw, bold, unapologetic design. Heavy typography and contrast.", preview: "preview-brutalism", tags: ["bold", "editorial", "daring"], goodFor: "Creative, attention-grabbing" },
+            { name: "Neumorphism", category: "Modern", description: "Soft shadows creating 3D effect. Subtle and sophisticated.", preview: "preview-neumorphism", tags: ["3d", "soft", "tactile"], goodFor: "App interfaces" },
+            { name: "Neon", category: "Bold", description: "High contrast neon colors on dark. Vibrant and energetic.", preview: "preview-neon", tags: ["bold", "vibrant", "tech"], goodFor: "Tech startups, gaming" },
+            { name: "Clay", category: "Modern", description: "Soft, organic shapes with warm tones. Approachable and friendly.", preview: "preview-clay", tags: ["warm", "friendly", "organic"], goodFor: "Consumer apps, wellness" },
+            { name: "Gradient Rich", category: "Modern", description: "Bold gradients as main design element. Modern and dynamic.", preview: "preview-gradient-rich", tags: ["dynamic", "modern", "colorful"], goodFor: "Creative platforms" },
+            { name: "Monochromatic", category: "Professional", description: "Single color family for entire design. Sophisticated and cohesive.", preview: "preview-monochromatic", tags: ["cohesive", "professional", "elegant"], goodFor: "Corporate, luxury brands" },
+            { name: "Duotone", category: "Modern", description: "Two complementary colors. Bold yet balanced visual impact.", preview: "preview-duotone", tags: ["bold", "balanced", "modern"], goodFor: "Creative, modern apps" },
+        ];
+
+        const styleDescriptions = {
+            "Minimalism": "White space is your friend. Focus on essential elements. Perfect for fintech/investment apps where trust and clarity matter. Scandinavian design influence.",
+            "Glassmorphism": "Translucent elements with backdrop blur. Premium, modern feel. Great for overlays and layered interfaces. Requires careful contrast management.",
+            "Dark Minimal": "Dark backgrounds with light content. Professional, reduces eye strain. Ideal for SaaS dashboards and investment platforms. Works well for long sessions.",
+            "Brutalism": "Bold, unrefined aesthetic. Large typography, heavy borders, stark contrasts. Makes a statement. Memorable but use carefully.",
+            "Neumorphism": "Soft, extruded shadows creating 3D. Tactile feeling. Good for interactive elements. Can feel slow if overused.",
+            "Neon": "High contrast, bright colors on dark backgrounds. Energetic and attention-grabbing. Works for tech startups. Ensure accessibility.",
+            "Clay": "Rounded, soft shapes with warm gradients. Friendly and approachable. Good for consumer-facing apps. Less suitable for finance.",
+            "Gradient Rich": "Vibrant gradients as primary design language. Modern and dynamic. Use with caution to avoid visual chaos.",
+            "Monochromatic": "One color, many tones. Extremely cohesive and professional. Works for luxury and corporate brands.",
+            "Duotone": "Two strategic colors for contrast. Clean, modern, bold. Great balance between aesthetic and functionality."
+        };
+
+        let selectedStyle = null;
+
+        function initStyles() {
+            const grid = document.getElementById("stylesGrid");
+            styles.forEach((style, index) => {
+                const card = document.createElement("div");
+                card.className = "style-card";
+                card.innerHTML = `
+                    <div style="margin-bottom: 12px;">
+                        <div class="style-name">${style.name}</div>
+                        <span class="style-category">${style.category}</span>
+                    </div>
+                    <div class="style-preview ${style.preview}"></div>
+                    <div class="style-description">${style.description}</div>
+                    <div>
+                        ${style.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
+                    </div>
+                    <div style="margin-top: 12px; font-size: 0.9em;">
+                        <span style="color: #06b6d4; font-weight: 500;">Good for:</span>
+                        <div style="color: #cbd5e1; margin-top: 4px;">${style.goodFor}</div>
+                    </div>
+                `;
+
+                card.addEventListener("click", () => selectStyle(style, card));
+                grid.appendChild(card);
+            });
+        }
+
+        function selectStyle(style, element) {
+            // Remove previous selection
+            document.querySelectorAll(".style-card").forEach(card => {
+                card.classList.remove("selected");
+            });
+
+            // Select new
+            element.classList.add("selected");
+            selectedStyle = style;
+
+            // Show selection info
+            const info = document.getElementById("selectionInfo");
+            document.getElementById("selectedName").textContent = style.name;
+            document.getElementById("selectedDescription").textContent = styleDescriptions[style.name] || style.description;
+            document.getElementById("selectedTags").innerHTML = style.tags.map(tag =>
+                `<span class="tag">${tag}</span>`
+            ).join("");
+            info.style.display = "block";
+            info.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        function confirmSelection() {
+            if (selectedStyle) {
+                alert(`✓ Perfect! You selected: ${selectedStyle.name}\n\nNow we'll redesign RAISE with this style.`);
+                // Could save to localStorage or send to backend
+            }
+        }
+
+        // Initialize on load
+        initStyles();
+    </script>
+</body>
+</html>

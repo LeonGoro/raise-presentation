@@ -1,0 +1,213 @@
+{
+  "name": "RAISE Dark Minimal Design System",
+  "version": "1.0.0",
+  "primitive": {
+    "color": {
+      "neutral": {
+        "0": "#ffffff",
+        "50": "#f8fafc",
+        "100": "#f1f5f9",
+        "200": "#e2e8f0",
+        "300": "#cbd5e1",
+        "400": "#94a3b8",
+        "500": "#64748b",
+        "600": "#475569",
+        "700": "#334155",
+        "800": "#1e293b",
+        "900": "#0f172a"
+      },
+      "primary": {
+        "50": "#f0f9ff",
+        "100": "#e0f2fe",
+        "200": "#bae6fd",
+        "300": "#7dd3fc",
+        "400": "#38bdf8",
+        "500": "#06b6d4",
+        "600": "#0891b2",
+        "700": "#0e7490",
+        "800": "#155e75",
+        "900": "#164e63"
+      },
+      "accent": {
+        "50": "#fef3c7",
+        "100": "#fde68a",
+        "200": "#fcd34d",
+        "300": "#fbbf24",
+        "400": "#f59e0b",
+        "500": "#d97706"
+      },
+      "success": {
+        "50": "#dcfce7",
+        "100": "#bbf7d0",
+        "200": "#86efac",
+        "500": "#22c55e",
+        "700": "#15803d"
+      },
+      "error": {
+        "50": "#fee2e2",
+        "100": "#fecaca",
+        "200": "#fca5a5",
+        "500": "#ef4444",
+        "700": "#b91c1c"
+      }
+    },
+    "typography": {
+      "fontFamily": {
+        "sans": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif",
+        "mono": "'Monaco', 'Courier New', monospace"
+      },
+      "fontSize": {
+        "xs": "12px",
+        "sm": "14px",
+        "base": "16px",
+        "lg": "18px",
+        "xl": "20px",
+        "2xl": "24px",
+        "3xl": "30px",
+        "4xl": "36px",
+        "5xl": "48px"
+      },
+      "fontWeight": {
+        "light": 300,
+        "normal": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700
+      },
+      "lineHeight": {
+        "tight": 1.2,
+        "normal": 1.5,
+        "relaxed": 1.75
+      },
+      "letterSpacing": {
+        "tight": "-0.01em",
+        "normal": "0em",
+        "wide": "0.02em"
+      }
+    },
+    "spacing": {
+      "0": "0",
+      "1": "4px",
+      "2": "8px",
+      "3": "12px",
+      "4": "16px",
+      "6": "24px",
+      "8": "32px",
+      "12": "48px",
+      "16": "64px"
+    },
+    "shadow": {
+      "none": "none",
+      "sm": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+      "md": "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+      "lg": "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
+      "xl": "0 20px 25px -5px rgba(0, 0, 0, 0.15)",
+      "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "glow": "0 0 20px rgba(6, 182, 212, 0.3)"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "4px",
+      "md": "8px",
+      "lg": "12px",
+      "xl": "16px",
+      "full": "9999px"
+    },
+    "blur": {
+      "none": "none",
+      "sm": "blur(4px)",
+      "md": "blur(12px)",
+      "lg": "blur(24px)"
+    }
+  },
+  "semantic": {
+    "background": {
+      "primary": "{primitive.color.neutral.900}",
+      "secondary": "{primitive.color.neutral.800}",
+      "tertiary": "{primitive.color.neutral.700}",
+      "interactive": "{primitive.color.primary.500}",
+      "success": "{primitive.color.success.500}",
+      "error": "{primitive.color.error.500}"
+    },
+    "text": {
+      "primary": "{primitive.color.neutral.50}",
+      "secondary": "{primitive.color.neutral.300}",
+      "tertiary": "{primitive.color.neutral.400}",
+      "interactive": "{primitive.color.primary.300}",
+      "inverse": "{primitive.color.neutral.900}"
+    },
+    "border": {
+      "primary": "{primitive.color.neutral.700}",
+      "secondary": "{primitive.color.neutral.600}",
+      "interactive": "{primitive.color.primary.500}",
+      "subtle": "rgba(100, 116, 139, 0.2)"
+    },
+    "elevation": {
+      "low": "{primitive.shadow.sm}",
+      "medium": "{primitive.shadow.md}",
+      "high": "{primitive.shadow.lg}"
+    }
+  },
+  "component": {
+    "button": {
+      "primary": {
+        "bg": "{semantic.background.interactive}",
+        "text": "{primitive.color.neutral.900}",
+        "padding": "{primitive.spacing.3} {primitive.spacing.6}",
+        "fontSize": "{primitive.typography.fontSize.base}",
+        "fontWeight": "{primitive.typography.fontWeight.semibold}",
+        "borderRadius": "{primitive.borderRadius.md}",
+        "shadow": "{primitive.shadow.md}",
+        "hover": {
+          "bg": "{primitive.color.primary.600}",
+          "shadow": "{primitive.shadow.lg}"
+        },
+        "active": {
+          "bg": "{primitive.color.primary.700}",
+          "shadow": "{primitive.shadow.sm}"
+        }
+      },
+      "secondary": {
+        "bg": "transparent",
+        "border": "1px solid {semantic.border.interactive}",
+        "text": "{semantic.text.interactive}",
+        "padding": "{primitive.spacing.3} {primitive.spacing.6}",
+        "fontSize": "{primitive.typography.fontSize.base}",
+        "fontWeight": "{primitive.typography.fontWeight.semibold}",
+        "borderRadius": "{primitive.borderRadius.md}",
+        "hover": {
+          "bg": "rgba(6, 182, 212, 0.1)"
+        }
+      }
+    },
+    "card": {
+      "bg": "{primitive.color.neutral.800}",
+      "border": "1px solid {semantic.border.subtle}",
+      "borderRadius": "{primitive.borderRadius.lg}",
+      "padding": "{primitive.spacing.6}",
+      "shadow": "{primitive.shadow.md}",
+      "backdropBlur": "{primitive.blur.md}",
+      "hover": {
+        "border": "1px solid {semantic.border.interactive}",
+        "shadow": "{primitive.shadow.lg}"
+      }
+    },
+    "input": {
+      "bg": "{primitive.color.neutral.900}",
+      "border": "1px solid {semantic.border.primary}",
+      "text": "{semantic.text.primary}",
+      "padding": "{primitive.spacing.3} {primitive.spacing.4}",
+      "borderRadius": "{primitive.borderRadius.md}",
+      "focus": {
+        "border": "2px solid {semantic.border.interactive}",
+        "shadow": "0 0 0 3px rgba(6, 182, 212, 0.1)"
+      }
+    },
+    "slide": {
+      "bg": "{primitive.color.neutral.900}",
+      "minHeight": "100vh",
+      "padding": "{primitive.spacing.12}",
+      "animation": "fade-in 0.4s ease-out"
+    }
+  }
+}
